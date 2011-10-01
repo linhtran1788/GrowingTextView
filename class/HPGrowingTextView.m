@@ -224,12 +224,7 @@
                                                  UIViewAnimationOptionBeginFromCurrentState)                                 
                                      animations:^(void) {
                                          [self resizeTextView:newSizeH];
-                                     } 
-                                     completion:^(BOOL finished) {
-                                         if ([delegate respondsToSelector:@selector(growingTextView:didChangeHeight:)]) {
-                                             [delegate growingTextView:self didChangeHeight:newSizeH];
-                                         }
-                                     }];
+                                     } completion:nil];
 #endif
                 } else {
                     [UIView beginAnimations:@"" context:nil];
@@ -241,13 +236,7 @@
                     [UIView commitAnimations];
                 }
             } else {
-                [self resizeTextView:newSizeH];                
-                // [fixed] The growingTextView:didChangeHeight: delegate method was not called at all when not animating height changes.
-                // thanks to Gwynne <http://blog.darkrainfall.org/>
-                
-                if ([delegate respondsToSelector:@selector(growingTextView:didChangeHeight:)]) {
-                    [delegate growingTextView:self didChangeHeight:newSizeH];
-                }	
+                [self resizeTextView:newSizeH];
             }
 		}
 		
@@ -290,6 +279,10 @@
     internalTextViewFrame.size.width = internalTextView.contentSize.width;
     
     internalTextView.frame = internalTextViewFrame;
+	
+	if ([delegate respondsToSelector:@selector(growingTextView:didChangeHeight:)]) {
+		[delegate growingTextView:self didChangeHeight:newSizeH];
+	}
 }
 
 -(void)growDidStop
