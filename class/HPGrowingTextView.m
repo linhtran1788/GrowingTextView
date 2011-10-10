@@ -137,6 +137,20 @@
     return contentInset;
 }
 
+- (void)setMinHeight:(CGFloat)height
+{
+	minHeight = height;
+	
+	[self sizeToFit];
+}
+
+- (void)setMaxHeight:(CGFloat)height
+{
+	maxHeight = height;
+    
+    [self sizeToFit];
+}
+
 -(void)setMaxNumberOfLines:(int)n
 {
     // Use internalTextView for height calculations, thanks to Gwynne <http://blog.darkrainfall.org/>
@@ -150,7 +164,7 @@
     
     internalTextView.text = newText;
     
-    maxHeight = internalTextView.contentSize.height;
+    self.maxHeight = internalTextView.contentSize.height;
     
     internalTextView.text = saveText;
     internalTextView.hidden = NO;
@@ -179,7 +193,7 @@
     
     internalTextView.text = newText;
     
-    minHeight = internalTextView.contentSize.height;
+    self.minHeight = internalTextView.contentSize.height;
     
     internalTextView.text = saveText;
     internalTextView.hidden = NO;

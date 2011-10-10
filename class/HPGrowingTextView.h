@@ -76,8 +76,8 @@
 }
 
 //real class properties
-@property (readonly) CGFloat minHeight;
-@property (readonly) CGFloat maxHeight;
+@property (nonatomic) CGFloat minHeight;
+@property (nonatomic) CGFloat maxHeight;
 @property int maxNumberOfLines;
 @property int minNumberOfLines;
 @property BOOL animateHeightChange;
