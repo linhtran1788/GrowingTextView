@@ -492,7 +492,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range
  replacementText:(NSString *)atext {
-	
+    BOOL delegateAnswer;
+    if ([delegate respondsToSelector:@selector(growingTextView:shouldChangeTextInRange:replacementText:)]) {
+        delegateAnswer = [delegate growingTextView:self shouldChangeTextInRange:range replacementText:atext];
+    }
+    
 	//weird 1 pixel bug when clicking backspace when textView is empty
 	if(![textView hasText] && [atext isEqualToString:@""]) return NO;
 	
@@ -502,7 +506,7 @@
 		}
 	}
 	
-	return YES;
+	return delegateAnswer;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
