@@ -78,10 +78,4 @@
     [super setContentSize:contentSize];
 }
 
-
-- (void)dealloc {
-    [super dealloc];
-}
-
-
 @end
