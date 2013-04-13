@@ -492,7 +492,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range
  replacementText:(NSString *)atext {
-    BOOL delegateAnswer;
+    BOOL delegateAnswer = NO;
     if ([_delegate respondsToSelector:@selector(growingTextView:shouldChangeTextInRange:replacementText:)]) {
         delegateAnswer = [_delegate growingTextView:self shouldChangeTextInRange:range replacementText:atext];
     }
